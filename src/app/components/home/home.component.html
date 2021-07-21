@@ -1,0 +1,116 @@
+<div class="ui active inverted dimmer" [class.active]="loading">
+  <div class="ui text loader">Loading</div>
+</div>
+
+<!-- https://semantic-ui.com/views/statistic.html -->
+<div class="jumbotron bg-white text-center">
+  <h1 class="display-4">Corona Covid-19 Tracker</h1>
+  <hr />
+  <app-dashboard-card
+    [totalConfirmed]="totalConfirmed"
+    [totalActive]="totalActive"
+    [totalDeaths]="totalDeaths"
+    [totalRecovered]="totalRecovered"
+  ></app-dashboard-card>
+</div>
+
+<hr />
+
+<div class="ui form">
+  <div class="inline fields">
+    <label for="fruit">Select Case Type :</label>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          type="radio"
+          name="fruit"
+          checked=""
+          tabindex="0"
+          class="hidden"
+          value="c"
+          id="c"
+          #c
+          (click)="updateChart(c)"
+        />
+        <label for="c">Confirmed</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          type="radio"
+          name="fruit"
+          tabindex="0"
+          class="hidden"
+          value="d"
+          id="d"
+          #d
+          (click)="updateChart(d)"
+        />
+        <label for="d">Deaths</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          type="radio"
+          name="fruit"
+          tabindex="0"
+          class="hidden"
+          value="r"
+          id="r"
+          #r
+          (click)="updateChart(r)"
+        />
+        <label for="r">Recovered</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          type="radio"
+          name="fruit"
+          tabindex="0"
+          class="hidden"
+          value="a"
+          id="a"
+          #a
+          (click)="updateChart(a)"
+        />
+        <label for="a">Active</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <!-- <google-chart [data]="columnChart"></google-chart> -->
+      <google-chart
+        [type]="chart.PieChart"
+        [data]="datatable"
+        [height]="chart.height"
+        [options]="chart.options"
+        style="width: 100%"
+      ></google-chart>
+    </div>
+    <div class="col">
+      <!-- <google-chart [data]="pieChart"></google-chart> -->
+      <google-chart
+        [type]="chart.ColumnChart"
+        [data]="datatable"
+        [height]="chart.height"
+        [options]="chart.options"
+        style="width: 100%"
+      ></google-chart>
+    </div>
+    <!-- <div class="col">
+      <google-chart
+        [type]="chart.LineChart"
+        [data]="datatable"
+        [height]="chart.height"
+        [options]="chart.options"
+        style="width: 100%"
+      ></google-chart>
+    </div> -->
+  </div>
+</div>
